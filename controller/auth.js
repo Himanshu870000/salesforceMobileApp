@@ -5,10 +5,6 @@ const User = require('../models/user');
 const sequelize = require('../database/connection');
 const dotenv = require('dotenv');
 dotenv.config({ path: './config.env' });
-const { authenticateToken } = require('../Middleware/auth');
-        
-
-
 
 exports.signup = async (req, res) => {
     try {
