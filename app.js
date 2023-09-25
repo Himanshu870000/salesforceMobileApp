@@ -1,5 +1,5 @@
 /**
- * Author : Himanshu
+ * Author : Himanshu Tripathi
  * description: entry point for the node app
  */
 
@@ -21,28 +21,13 @@ app.use(morgan('dev'));
 const client = require('./database/connection');
 
 
-// Sf Connections
-
-const force = require("./sfConnection/DevOrg");
-
-
 //app specifc routes TODO:
 const authRoutes = require("./routes/auth");
-const GetUsers = require("./routes/index");
-const createLead = require("./routes/lead");
-const createAccount = require("./routes/account");
-const createContact = require("./routes/contact");
-const createOpportunity = require("./routes/opportunity")
 
 
 
 // My Routes
 app.use("/api", authRoutes);
-app.use("/api", GetUsers);
-app.use("/api", createLead);
-app.use("/api", createAccount);
-app.use("/api", createContact);
-app.use("/api", createOpportunity);
 
 
 app.get('/', (req, res) => {

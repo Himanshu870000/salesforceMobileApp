@@ -20,12 +20,12 @@ exports.signup = async (req, res) => {
             });
         }
 
-        const { name, email, password } = req.body;
-        console.log('Name--->', name);
-        console.log('Email--->', email);
+        const { type, username, password } = req.body;
+        console.log('type--->', type);
+        console.log('username--->', username);
         console.log('Pass--->', password);
 
-        const existingUser = await User.findOne({ where: { email } });
+        const existingUser = await User.findOne({ where: { username } });
         if (existingUser) {
             return res.status(400).json({
                 error: "User already exists",
@@ -35,14 +35,14 @@ exports.signup = async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
-        const user = await User.create({ name, email, password: hashedPassword });
+        const user = await User.create({ type, username, password: hashedPassword });
 
  
         
 
         res.json({
-            name: user.name,
-            email: user.email,
+            type: user.type,
+            username: user.username,
             id: user.id,
         });
     } catch (err) {
